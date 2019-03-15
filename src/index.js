@@ -1,32 +1,37 @@
 import Phaser from "phaser";
-import logoImg from "./assets/logo.png";
+import Scene01 from './scene_01.js';
+//import logoImg from "./assets/logo.png";
+//import bird_sps from "./assets/bird_4_sprites.svg";
 
-const config = {
-  type: Phaser.AUTO,
-  parent: "phaser-example",
-  width: 800,
-  height: 600,
-  scene: {
-    preload: preload,
-    create: create
-  }
+var config = {
+    type: Phaser.AUTO,
+    backgroundColor: '#666666',
+    parent: "responsive",
+    scale: {
+        width: 1920,
+        height: 1080,
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        autoRound: true,
+    },
+    scene: [Scene01]
 };
 
-const game = new Phaser.Game(config);
+var game = new Phaser.Game(config);
 
-function preload() {
-  this.load.image("logo", logoImg);
-}
+ // TODO: Create a Scene with a hierarchy of sprites created from SVGs and test this config:
+    /*
+        var config = {
+            type: Phaser.AUTO,
+            scale: {
+                mode: Phaser.Scale.FIT,
+                parent: 'phaser-example',
+                autoCenter: Phaser.Scale.CENTER_BOTH,
+                width: 800,
+                height: 600
+            },
+            //...
+        }
+    */
 
-function create() {
-  const logo = this.add.image(400, 150, "logo");
 
-  this.tweens.add({
-    targets: logo,
-    y: 450,
-    duration: 2000,
-    ease: "Power2",
-    yoyo: true,
-    loop: -1
-  });
-}
